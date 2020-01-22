@@ -9,7 +9,6 @@ Create the base client app and go into the created directory:
 Run the application:
 - `ng serve --open`
 
-
 ## Server
 This server demo app uses Express. Checkout https://expressjs.com/en/starter/installing.html for how to get started.
 
@@ -25,3 +24,24 @@ Install dependencies:
 
 Run the local server (default port is 3000):
 - `DEBUG=server:* npm start`
+
+## Proxy
+To make the client and server look like they are coming from the same host and avoid a bunch of CORS and other related issues that will muddy a demo, we have a reverse proxy setup to send `/api/*` requests to the Express server and everything else to the Angular app.
+`cd proxy`
+`DEBUG=proxy:* npm start`
+
+## Outbound connection and SSL
+To get an easy, stable outbound connection that also provides SSL, check out ngrok (https://ngrok.com). Running this:
+`ngrok http -subdomain=your-subdomain-if-you-have-one 8080`
+will create `https://your-subdomain-if-you-have-one.ngrok.io` that sends traffic to `localhost:8080` (the proxy) that will then send things to either Express or Angular.
+
+This is especially useful if you need to do testing with things that might include OAuth redirects, etc.
+
+## Local setup
+Getting all of those processes running is kind of a pain. Install tmuxinator (https://github.com/tmuxinator/tmuxinator) and then just run:
+`tmuxinator start project your-ngrok-subdomain` 
+from the project directory to have it setup and start everything for you. 
+
+Running:
+`tmux kill-session -t project` 
+will kill everything it started for you.
