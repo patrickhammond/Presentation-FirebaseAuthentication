@@ -15,6 +15,9 @@ export class InitComponent implements OnInit, OnDestroy {
   private onAuthStateChangedUnsubscriber: Unsubscribe;
 
   ngOnInit() {
+    // Firebase Auth note: you can't immediately query for currentUser as it will
+    // initially return null. Instead you should setup a listener with Firebase to get
+    // notified when it can determine that the auth state has changed (or loaded).
     this.onAuthStateChangedUnsubscriber = this.app.auth().onAuthStateChanged((user) => {
       if (user != null) {
         this.router.navigate(['/home']);
