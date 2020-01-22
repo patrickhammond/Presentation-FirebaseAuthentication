@@ -7,7 +7,7 @@ Create the base client app and go into the created directory:
 - `cd client`
 
 Run the application:
-- `ng serve --open`
+- `ng serve --disable-host-check`
 
 ## Server
 This server demo app uses Express. Checkout https://expressjs.com/en/starter/installing.html for how to get started.

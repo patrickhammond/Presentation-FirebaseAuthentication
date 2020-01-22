@@ -47,7 +47,7 @@ windows:
       panes:
         - client:
           - cd client
-          - ng serve
+          - ng serve --disable-host-check
         - proxy:
           - cd proxy
           - DEBUG=proxy:* npm start

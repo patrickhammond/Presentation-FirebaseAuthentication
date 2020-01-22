@@ -1,19 +1,27 @@
-var proxy = require('express-http-proxy');
-var app = require('express')();
-var debug = require('debug')('proxy:proxy');
 var http = require('http');
+var httpProxy = require('http-proxy');
 
-app.use('/api', proxy('http://localhost:3000'));
-app.use('/', proxy('http://localhost:4200'));
+var apiProxy = httpProxy.createProxyServer({
+    target: 'http://localhost:3000'
+});
 
-var server = http.createServer(app);
+var clientProxy = httpProxy.createProxyServer({
+    target: 'http://localhost:4200',
+    ws: true
+});
+
+var server = http.createServer(function (req, res) {
+    if (req.url.startsWith('/api/')) {
+        req.url = req.url.replace('/api/', '');
+        apiProxy.web(req, res);
+    } else {
+        console.log('client...');
+        clientProxy.web(req, res);
+    }
+});
+
+server.on('upgrade', function (req, socket, head) {
+    clientProxy.ws(req, socket, head);
+});
+
 server.listen(8080);
-server.on('listening', onListening);
-
-function onListening() {
-    var addr = server.address();
-    var bind = typeof addr === 'string'
-        ? 'pipe ' + addr
-        : 'port ' + addr.port;
-    debug('Listening on ' + bind);
-}
