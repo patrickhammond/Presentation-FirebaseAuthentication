@@ -4,6 +4,7 @@ import { FirebaseApp } from '@angular/fire';
 import * as firebase from 'firebase';
 import * as firebaseui from 'firebaseui';
 import { Router } from '@angular/router';
+import { MotdService } from '../motd.service';
 
 @Component({
   selector: 'app-login',
@@ -14,10 +15,16 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private ui: firebaseui.auth.AuthUI;
 
-  constructor(private app: FirebaseApp, private router: Router) { }
+  constructor(private app: FirebaseApp, private router: Router, private motd: MotdService) { }
+
+  motdResult: string;
 
   ngOnInit() {
     this.ui = new firebaseui.auth.AuthUI(this.app.auth());
+
+    this.motd.getMotd().toPromise().then((result) => {
+      this.motdResult = result.motd
+    })
 
     this.ui.start('#firebaseui-auth-container', {
       callbacks: {

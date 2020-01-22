@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  baseUrl: 'https://patrick-atomic.ngrok.io',
   firebase: {
     apiKey: "AIzaSyD5UTWHDGq3cSLnYobZIExJLuNJglUgB40",
     authDomain: "presentation-firebase-auth.firebaseapp.com",

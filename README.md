@@ -60,5 +60,9 @@ will kill everything it started for you.
 - You can style it however you want (out of scope).
 - If you are using Angular, you really want to use AngularFire vs this code.
 
-# 02: Firebase Admin SDK (Server)
-- Depends on the `firebase-admin` package.
+# 02: Firebase Admin SDK (Client + Server integration)
+- Server depends on the `firebase-admin` package.
+- Client:
+    - Checkout `motd.service.ts`, `home.component.ts`
+- Server:
+    - Checkout `index.js`
