@@ -45,3 +45,16 @@ from the project directory to have it setup and start everything for you.
 Running:
 `tmux kill-session -t project` 
 will kill everything it started for you.
+
+
+
+## Presentation notes
+- Setting up and integrating Firebase is out of scope.
+
+# Firebase Auth Drop In UI
+- Depends on the `@angular/fire` and `firebaseui` packages.
+- Setup in `app.module.ts`
+- Checkout `auth.ts`
+- Checkout `login.component.html` and `login.component.ts`
+- You can style it however you want (out of scope).
+- If you are using Angular, you really want to use AngularFire vs this code.
