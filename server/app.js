@@ -6,6 +6,13 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var admin = require('firebase-admin');
+
+admin.initializeApp({
+    credential: admin.credential.applicationDefault(),
+    databaseURL: "https://presentation-firebase-auth.firebaseio.com"
+});
+
 var app = express();
 
 app.use(logger('dev'));

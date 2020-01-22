@@ -53,6 +53,7 @@ windows:
           - DEBUG=proxy:* npm start
         - server:
           - cd server
+          - export GOOGLE_APPLICATION_CREDENTIALS="$HOME/.ssh/presentation-firebase-auth-firebase-adminsdk.json"
           - DEBUG=server:* npm start
         - ngrok:
           - ngrok http -subdomain=<%= @args[0] %> 8080

@@ -23,6 +23,7 @@ Install dependencies:
 - `npm install`
 
 Run the local server (default port is 3000):
+- `export GOOGLE_APPLICATION_CREDENTIALS="~/.ssh/presentation-firebase-auth-firebase-adminsdk.json"`
 - `DEBUG=server:* npm start`
 
 ## Proxy
@@ -51,10 +52,13 @@ will kill everything it started for you.
 ## Presentation notes
 - Setting up and integrating Firebase is out of scope.
 
-# 01: Firebase Auth Drop In UI
+# 01: Firebase Auth Drop In UI (Client)
 - Depends on the `@angular/fire` and `firebaseui` packages.
 - Checkout `login.component.html` and `login.component.ts`
 - Setup in `app.module.ts`
 - Checkout `auth.ts` and `init.component.ts` for some extra details.
 - You can style it however you want (out of scope).
 - If you are using Angular, you really want to use AngularFire vs this code.
+
+# 02: Firebase Admin SDK (Server)
+- Depends on the `firebase-admin` package.
