@@ -9,12 +9,16 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  currentUser: string;
+  currentUserJSON: string;
+  currentUserJWT: string;
 
   constructor(private app: FirebaseApp, private router: Router) { }
 
   ngOnInit() {
-    this.currentUser = JSON.stringify(this.app.auth().currentUser);
+    this.currentUserJSON = JSON.stringify(this.app.auth().currentUser);
+    this.app.auth().currentUser.getIdToken().then((token) => {
+      this.currentUserJWT = token;
+    })
   }
 
   async logout() {
