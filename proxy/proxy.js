@@ -15,7 +15,6 @@ var server = http.createServer(function (req, res) {
         req.url = req.url.replace('/api/', '');
         apiProxy.web(req, res);
     } else {
-        console.log('client...');
         clientProxy.web(req, res);
     }
 });
