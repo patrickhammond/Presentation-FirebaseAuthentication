@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  currentUser: string;
+
   constructor(private app: FirebaseApp, private router: Router) { }
 
   ngOnInit() {
+    this.currentUser = JSON.stringify(this.app.auth().currentUser);
   }
 
   async logout() {
